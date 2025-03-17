@@ -30,8 +30,8 @@
         }  
 
         .subheading {  
-            font-size: 1.5em; /* Alt başlık boyutu */  
-            margin-top: 10px; /* Üst boşluk */  
+            font-size: 1.5em;  
+            margin-top: 10px;  
         }  
 
         main {  
@@ -41,14 +41,29 @@
             align-items: center;  
             flex-direction: column;  
             padding: 20px;  
-            position: relative; /* Pozisyon ayarlaması için */  
+            position: relative;  
         }  
 
         img {  
             max-width: 80%;  
             height: auto;  
             margin-top: 20px;  
-            border: 2px solid #333; /* Resme kenarlık eklemek için */  
+            border: 2px solid #333;  
+        }  
+
+        button {  
+            background: #333;  
+            color: white;  
+            border: none;  
+            padding: 10px 20px;  
+            font-size: 1em;  
+            cursor: pointer;  
+            margin-top: 20px;  
+            border-radius: 5px;  
+        }  
+
+        button:hover {  
+            background: #555;  
         }  
 
         footer {  
@@ -63,19 +78,36 @@
 <body>  
     <header>  
         <h1>Taşgıranın Transiti</h1>  
-        <p class="subheading">Varsa şekliniz çarşambaya bekleriz</p> <!-- Alt başlık eklendi -->  
+        <p class="subheading">Varsa şekliniz çarşambaya bekleriz</p>  
     </header>  
     <main>  
-        <img src="site/transit.png" alt="Taşgıranın Transiti Resmi"> <!-- Resmin yolu -->  
+        <img src="site/transit.png" alt="Taşgıranın Transiti Resmi">  
+        <button id="playMusic">Müziği Oynat</button>  
+        <audio id="backgroundMusic" loop>  
+            <source src="site/music.mp3" type="audio/mpeg">  
+            Tarayıcınız ses çalmayı desteklemiyor.  
+        </audio>  
     </main>  
     <footer>  
         <p>Tüm hakları saklıdır &copy; 2025</p>  
     </footer>  
-</body>
-    </div>
 
-    <audio id="backgroundsong" src="site/music.mp3" loop=""></audio>
+    <script>  
+        document.addEventListener("DOMContentLoaded", function() {  
+            const audio = document.getElementById("backgroundMusic");  
+            const playButton = document.getElementById("playMusic");  
 
-</div></body>
+            // Otomatik çalma denemesi
+            audio.play().catch(() => {  
+                playButton.style.display = "block"; // Oynatma butonunu göster  
+            });  
 
-</html>  
+            playButton.addEventListener("click", function() {  
+                audio.play();  
+                playButton.style.display = "none"; // Butonu gizle  
+            });  
+        });  
+    </script>  
+</body>  
+
+</html>
